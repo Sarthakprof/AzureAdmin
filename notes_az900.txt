@@ -1,0 +1,6 @@
+Az 900 Azure Fundamentals
+https://docs.microsoft.com/en-us/learn/paths/azure-fundamentals/
+Vertical scaling, also known as "scaling up", is the process of adding resources to increase the power of an existing server. Some examples of vertical scaling are: adding more CPUs, or adding more memory.
+
+Horizontal scaling, also known as "scaling out", is the process of adding more servers that function together as one unit. For example, you have more than one server processing incoming requests.
+

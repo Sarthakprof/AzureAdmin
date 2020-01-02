@@ -64,3 +64,7 @@ Setup - Powershell
     - Run $ Get-AzVM to test module installations
     - Run $ Connect-AzAccount to connect to your Azure Account
     - HandsOn Lab: https://www.microsoft.com/handsonlabs/selfpacedlabs/details/SP-AZ100000
+
+https://docs.microsoft.com/en-us/learn/paths/azure-fundamentals/
+
+
