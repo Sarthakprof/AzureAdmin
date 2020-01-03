@@ -1,6 +1,10 @@
 Az 900 Azure Fundamentals
 https://docs.microsoft.com/en-us/learn/paths/azure-fundamentals/
-Vertical scaling, also known as "scaling up", is the process of adding resources to increase the power of an existing server. Some examples of vertical scaling are: adding more CPUs, or adding more memory.
-
-Horizontal scaling, also known as "scaling out", is the process of adding more servers that function together as one unit. For example, you have more than one server processing incoming requests.
+1. Vertical scaling, also known as "scaling up", is the process of adding resources to increase the power of an existing server. Some examples of vertical scaling are: adding more CPUs, or adding more memory.
+2. Horizontal scaling, also known as "scaling out", is the process of adding more servers that function together as one unit. For example, you have more than one server processing incoming requests.
+3. If you need to store large amount of data that is not accessed frequently then try using Data Warehouse or Data lake
+4. If fthe data is is accessed frequesntly then use Azure SQL or Azure Psotgres or Cosmos DB
+5. You can visulize your data in Data Warehouse and Data lake using PowerBI.
+6. Azure ScaleSets lets you manage 100s of VMs running the same application with same configs
+7. Azure AD Protection let you enable and manage and enforce MFA for Users
 
