@@ -7,4 +7,108 @@ https://docs.microsoft.com/en-us/learn/paths/azure-fundamentals/
 5. You can visulize your data in Data Warehouse and Data lake using PowerBI.
 6. Azure ScaleSets lets you manage 100s of VMs running the same application with same configs
 7. Azure AD Protection let you enable and manage and enforce MFA for Users
+https://docs.microsoft.com/en-gb/learn/modules/welcome-to-azure/3-tour-of-azure-services
+8. Compute Service of Azure:
+        Azure Virtual Machines - Windows or Linux virtual machines (VMs) hosted in Azure
+        Azure Virtual Machine Scale Sets-	Scaling for Windows or Linux VMs hosted in Azure
+        Azure Kubernetes Service-	Enables management of a cluster of VMs that run containerized services
+        Azure Service Fabric-	Distributed systems platform. Runs in Azure or on-premises
+        Azure Batch	- Managed service for parallel and high-performance computing applications
+        Azure Container Instances-	Run containerized apps on Azure without provisioning servers or VMs
+        Azure Functions-	An event-driven, serverless compute service
 
+9. Storage Service
+        Azure Blob storage-	Storage service for very large objects, such as video files or bitmaps
+        Azure File storage-	File shares that you can access and manage like a file server
+        Azure Queue storage-	A data store for queuing and reliably delivering messages between applications
+        Azure Table storage-	A NoSQL store that hosts unstructured data independent of any schema
+
+10. Networking services
+        Azure Virtual Network-	Connects VMs to incoming Virtual Private Network (VPN) connections
+        Azure Load Balancer-	Balances inbound and outbound connections to applications or service endpoints
+        Azure Application Gateway-	Optimizes app server farm delivery while increasing application security
+        Azure VPN Gatewa-y	Accesses Azure Virtual Networks through high-performance VPN gateways
+        Azure DNS-	Provides ultra-fast DNS responses and ultra-high domain availability
+        Azure Content Delivery Network-	Delivers high-bandwidth content to customers globally
+        Azure DDoS Protection-	Protects Azure-hosted applications from distributed denial of service (DDOS) attacks
+        Azure Traffic Manager-	Distributes network traffic across Azure regions worldwide
+        Azure ExpressRoute-	Connects to Azure over high-bandwidth dedicated secure connections
+        Azure Network Watcher-	Monitors and diagnoses network issues using scenario-based analysis
+        Azure Firewall-	Implements high-security, high-availability firewall with unlimited scalability
+        Azure Virtual WAN-	Creates a unified wide area network (WAN), connecting local and remote sites
+
+11. Databases
+        Azure Cosmos DB-	Globally distributed database that supports NoSQL options
+        Azure SQL Database-	Fully managed relational database with auto-scale, integral intelligence, and robust security
+        Azure Database for MySQL-	Fully managed and scalable MySQL relational database with high availability and security
+        Azure Database for PostgreSQL-	Fully managed and scalable PostgreSQL relational database with high availability and security
+        SQL Server on VMs-	Host enterprise SQL Server apps in the cloud
+        Azure SQL Data Warehouse-	Fully managed data warehouse with integral security at every level of scale at no extra cost
+        Azure Database Migration Service-	Migrates your databases to the cloud with no application code changes
+        Azure Cache for Redis-	Caches frequently used and static data to reduce data and application latency
+        Azure Database for MariaDB-	Fully managed and scalable MariaDB relational database with high availability and security
+
+12. Web services
+        Azure App Service-	Quickly create powerful cloud web-based apps
+        Azure Notification Hubs-	Send push notifications to any platform from any back end.
+        Azure API Management-	Publish APIs to developers, partners, and employees securely and at scale.
+        Azure Cognitive Search-	Fully managed search as a service.
+        Web Apps feature of Azure App Service-	Create and deploy mission-critical web apps at scale.
+        Azure SignalR Service-	Add real-time web functionalities easily.
+
+13. IOT 
+        IoT Central-	Fully-managed global IoT software as a service (SaaS) solution that makes it easy to connect, monitor, and manage your IoT assets at scale
+        Azure IoT Hub-	Messaging hub that provides secure communications and monitoring between millions of IoT devices
+        IoT Edge-	Data analysis models directly onto your IoT devices, allowing them to react quickly to state changes without needing to consult cloud-based AI models.
+
+14. Big Data
+        Azure SQL Data Warehouse-	Run analytics at a massive scale using a cloud-based Enterprise Data Warehouse (EDW) that leverages massive parallel processing (MPP) to run complex queries quickly across petabytes of data
+        Azure HDInsight-	Process massive amounts of data with managed clusters of Hadoop clusters in the cloud
+        Azure Databricks-	Collaborative Apache Spark–based analytics service that can be integrated with other Big Data services in Azure.
+
+15. Machine Learning
+        Azure Machine Learning Service-	Cloud-based environment you can use to develop, train, test, deploy, manage, and track machine learning models. It can auto-generate a model and auto-tune it for you. It will let you start training on your local machine, and then scale out to the cloud
+        Azure Machine Learning Studio-	Collaborative, drag-and-drop visual workspace where you can build, test, and deploy machine learning solutions using pre-built machine learning algorithms and data-handling modules
+
+16. Cognitive APIs
+        Vision-	Image-processing algorithms to smartly identify, caption, index, and moderate your pictures and videos.
+        Speech-	Convert spoken audio into text, use voice for verification, or add speaker recognition to your app.
+        Knowledge mapping-	Map complex information and data in order to solve tasks such as intelligent recommendations and semantic search.
+        Bing Search-	Add Bing Search APIs to your apps and harness the ability to comb billions of webpages, images, videos, and news with a single API call.
+        Natural Language processing	- Allow your apps to process natural language with pre-built scripts, evaluate sentiment and learn how to recognize what users want.
+
+17. DevOps
+        Azure DevOps-	Azure DevOps Services (formerly known as Visual Studio Team Services, or VSTS), provides development collaboration tools including high-performance pipelines, free private Git repositories, configurable Kanban boards, and extensive automated and cloud-based load testing
+        Azure DevTest Labs-	Quickly create on-demand Windows and Linux environments you can use to test or demo your applications directly from your deployment pipelines
+
+
+Azure Cloud Shell
+Azure Cloud Shell is a browser-based command-line experience for managing and developing Azure resources. Think of Cloud Shell as an interactive console that you run in the cloud.
+
+Cloud Shell provides two experiences to choose from, Bash and PowerShell. Both include access to the Azure command-line interface called Azure CLI and to Azure PowerShell.
+
+az account list --output table
+az group list --output table
+az resource list \
+    --resource-group learn-1e093b8c-a207-4e7f-b541-d99ec3f4045b \
+    --resource-type Microsoft.Web/sites
+az webapp stop \
+    --resource-group learn-1e093b8c-a207-4e7f-b541-d99ec3f4045b \
+    --name <web app name>
+az webapp start \
+    --resource-group learn-1e093b8c-a207-4e7f-b541-d99ec3f4045b \
+    --name <web app name>
+
+Azure Regions
+    A region is a geographical area on the planet containing at least one,
+    but potentially multiple datacenters that are nearby and networked together with a low-latency network
+
+    *There are also some global Azure services that do not require you to select a particular region,
+    such as Microsoft Azure Active Directory, Microsoft Azure Traffic Manager, and Azure DNS.
+
+    Example:  West US, Canada Central, West Europe, Australia East, and Japan West
+
+Special Azure regions:
+    US DoD Central, US Gov Virginia, US Gov Iowa and more: These are physical and logical network-isolated instances of Azure for US government agencies and partners. These datacenters are operated by screened US persons and include additional compliance certifications.
+
+    China East, China North and more: These regions are available through a unique partnership between Microsoft and 21Vianet, whereby Microsoft does not directly maintain the datacenters.
