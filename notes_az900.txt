@@ -83,21 +83,25 @@ https://docs.microsoft.com/en-gb/learn/modules/welcome-to-azure/3-tour-of-azure-
 
 
 Azure Cloud Shell
-Azure Cloud Shell is a browser-based command-line experience for managing and developing Azure resources. Think of Cloud Shell as an interactive console that you run in the cloud.
+        Azure Cloud Shell is a browser-based command-line experience for managing and developing Azure resources.
+        Think of Cloud Shell as an interactive console that you run in the cloud.
 
-Cloud Shell provides two experiences to choose from, Bash and PowerShell. Both include access to the Azure command-line interface called Azure CLI and to Azure PowerShell.
+        Cloud Shell provides two experiences to choose from, Bash and PowerShell.
+        Both include access to the Azure command-line interface called Azure CLI and to Azure PowerShell.
 
-az account list --output table
-az group list --output table
-az resource list \
-    --resource-group learn-1e093b8c-a207-4e7f-b541-d99ec3f4045b \
-    --resource-type Microsoft.Web/sites
-az webapp stop \
-    --resource-group learn-1e093b8c-a207-4e7f-b541-d99ec3f4045b \
-    --name <web app name>
-az webapp start \
-    --resource-group learn-1e093b8c-a207-4e7f-b541-d99ec3f4045b \
-    --name <web app name>
+CLI commands to start and stop a web app in azure:
+        az account list --output table
+        az group list --output table
+        az resource list \
+            --resource-group learn-1e093b8c-a207-4e7f-b541-d99ec3f4045b \
+            --resource-type Microsoft.Web/sites
+
+        az webapp stop \
+            --resource-group learn-1e093b8c-a207-4e7f-b541-d99ec3f4045b \
+            --name <web app name>
+        az webapp start \
+            --resource-group learn-1e093b8c-a207-4e7f-b541-d99ec3f4045b \
+            --name <web app name>
 
 Azure Regions
     A region is a geographical area on the planet containing at least one,
@@ -109,6 +113,237 @@ Azure Regions
     Example:  West US, Canada Central, West Europe, Australia East, and Japan West
 
 Special Azure regions:
-    US DoD Central, US Gov Virginia, US Gov Iowa and more: These are physical and logical network-isolated instances of Azure for US government agencies and partners. These datacenters are operated by screened US persons and include additional compliance certifications.
+    US DoD Central, US Gov Virginia, US Gov Iowa and more: These are physical and logical
+     network-isolated instances of Azure for US government agencies and partners.
+     These datacenters are operated by screened US persons and include additional compliance certifications.
 
-    China East, China North and more: These regions are available through a unique partnership between Microsoft and 21Vianet, whereby Microsoft does not directly maintain the datacenters.
+    China East, China North and more: These regions are available through a unique partnership between Microsoft 
+    and 21Vianet, whereby Microsoft does not directly maintain the datacenters.
+
+Azure Geographies
+        Geographies are broken up into the following areas:
+        Americas
+        Europe
+        Asia Pacific
+        Middle East and Africa
+
+        Each region belongs to a single geography and has specific service availability, 
+        compliance, and data residency/sovereignty rules applied to it
+
+Availability Zones
+        Availability Zones are physically separate datacenters within an Azure region.
+        Each Availability Zone is made up of one or more datacenters equipped with independent power, cooling, and networking. 
+        It is set up to be an isolation boundary. If one zone goes down, the other continues working. 
+        Availability Zones are connected through high-speed, private fiber-optic networks.
+
+        Not every region has support for Availability Zones. 
+        The following regions have a minimum of three separate zones to ensure resiliency.
+
+        Central US
+        East US 2
+        West US 2
+        West Europe
+        France Central
+        North Europe
+        Southeast Asia
+
+        Availability Zones are primarily for VMs, managed disks, load balancers, and SQL databases. Azure services that support Availability Zones fall into two categories:
+
+        Zonal services – you pin the resource to a specific zone (for example, virtual machines, managed disks, IP addresses)
+        Zone-redundant services – platform replicates automatically across zones (for example, zone-redundant storage, SQL Database).
+
+Region Pairs
+        it's possible that a large enough disaster could cause an outage large enough to affect even two datacenters. 
+        That's why Azure also creates region pairs.
+        Each Azure region is always paired with another region within the same geography (such as US, Europe, or Asia) at least 300 miles away. 
+        This approach allows for the replication of resources (such as virtual machine storage) across a geography that helps reduce the likelihood 
+        of interruptions due to events such as natural disasters, civil unrest, power outages, or physical network outages affecting both regions at once. 
+        If a region in a pair was affected by a natural disaster, for instance, services would automatically fail over to other region in i
+                
+SLAs 
+        When combining SLAs across different service offerings, the resultant SLA is called a Composite SLA. 
+
+        TThe composite SLA value for this application is:
+
+        99.95 percent(Web App) × 99.99 percent(SQL DB) = 99.94 percent
+
+        This means the combined probability of failure is higher than the individual SLA values. This isn't surprising,
+        because an application that relies on multiple services has more potential failure points.
+
+        Conversely, you can improve the composite SLA by creating independent fallback paths.
+        For example, if SQL Database is unavailable, you can put transactions into a queue for processing at a later time.
+
+ Resillency
+        When designing your architecture you need to design for resiliency, and you should perform a Failure Mode Analysis (FMA). 
+        The goal of an FMA is to identify possible points of failure and to define how the application will respond to those failures.
+
+Feature preview categories
+        There are two types of previews available:
+
+        Private Preview. An Azure feature marked "private preview" is available to specific Azure customers for evaluation purposes.
+        This is typically by invite only and issued directly by the product team responsible for the feature or service.
+        Public Preview. An Azure feature marked "public preview" is available to all Azure customers for evaluation purposes.
+        These previews can be turned on through the preview features page as detailed below.
+
+Azure Compute in detailed
+    Scaling VM using beow feature
+    - Availability Sets
+    - Virtual Machine ScaleSets
+    = Azure Batch
+
+Availability Sets: 
+    An availability set is a logical grouping of two or more VMs that help keep your application 
+    available during planned or unplanned maintenance.
+
+    -Planned Maintainence: A planned maintenance event is when the underlying Azure fabric that hosts VMs is
+        updated by Microsoft. A planned maintenance event is done to patch security vulnerabilities,
+        improve performance, and add or update features. Most of the time these updates are done without
+        any impact to the guest VMs. But sometimes VMs require a reboot to complete an update. When the VM is
+        part of an availability set,
+
+        VMs are put into different update domains. 
+        Update domains indicate groups of VMs and underlying physical hardware that can be rebooted at the same time. 
+
+    -Unplanned Maintainence: Unplanned maintenance events involve a hardware failure in the data center,
+        such as a power outage or disk failure. VMs that are part of an availability set automatically switch to a
+        working physical server so the VM continues to run. The group of virtual machines that share common hardware
+        are in the same fault domain.
+
+        A fault domain is essentially a rack of servers. 
+        It provides the physical separation of your workload across different power, cooling, and network hardware that 
+        support the physical servers in the data center server racks. 
+
+- With an availability set, you get:
+
+        1. Up to three fault domains that each have a server rack with dedicated power and network resources
+        2. Five logical update domains which then can be increased to a maximum of 20
+
+* There's no cost for an availability set. You only pay for the VMs within the availability set.
+  We highly recommend that you place each workload in an availability set to avoid having a single point of failure in your VM architecture.
+
+  https://docs.microsoft.com/en-gb/learn/modules/intro-to-azure-compute/3-virtual-machines
+
+VIrtual Machine Scale Sets 
+    Azure Virtual Machine Scale Sets let you create and manage a group of identical, load balanced VMs. 
+    cale sets allow you to centrally manage, configure, and update a large number of VMs in minutes to provide
+    highly available applications. 
+    The number of VM instances can automatically increase or decrease in response to demand or a defined schedule. 
+    With Virtual Machine Scale Sets, you can build large-scale services for areas such as compute, big data,
+    and container workloads.
+
+Azure Batch 
+
+    Azure Batch enables large-scale job scheduling and compute management with the ability to scale to tens,
+    hundreds, or thousands of VMs.
+
+    When you're ready to run a job, Batch does the following:
+
+        Starts a pool of compute VMs for you
+        Installs applications and staging data
+        Runs jobs with as many tasks as you have
+        Identifies failures
+        Requeues work
+        Scales down the pool as work completes
+
+Azure Containers
+
+    - Azure Container Instances (ACI)
+    - Azure Kubernetes Service (AKS)
+
+Azure Container Instances (ACI)
+     It is a PaaS offering that allows you to upload your containers and execute them directly with automatic elastic scale.
+
+Azure Kubernetes Service AKS
+    The task of automating, managing, and interacting with a large number of containers is known as orchestration. 
+    Azure Kubernetes Service (AKS) is a complete orchestration service for containers with distributed architectures
+    with multiple containers.
+
+
+Azure App Service
+    This platform as a service (PaaS) allows you to focus on the website and API logic
+    while Azure handles the infrastructure to run and scale your web application
+
+    Cost: 
+    You pay for the Azure compute resources your app uses while it
+     processes requests based on the App Service Plan you choose.
+
+     Types of Web Apps
+        With Azure App Service, you can host most common web app styles including:
+
+            Web Apps
+            API Apps
+            WebJobs
+            Mobile Apps
+
+
+Azure serverless Compute
+        Azure has two implementations of serverless compute:
+
+        1. Azure Functions, which can execute code in almost any modern language.
+        2. Azure Logic Apps, which are designed in a web-based designer and can execute logic triggered by Azure services without writing any code.
+
+        Where Functions execute code, Logic Apps execute workflows designed to automate business scenarios and built from predefined logic blocks.
+
+        You create Logic App workflows using a visual designer on the Azure portal or in Visual Studio.
+         The workflows are persisted as a JSON file with a known workflow schema
+
+
+
+*****Azure Data Storage***** 
+https://docs.microsoft.com/en-gb/learn/modules/intro-to-data-in-azure/3-how-azure-storage-meets-your-business-storage-needs   
+Types of Data:
+        Structured Data - SQL
+        Semi-Structured Data - NoSQL
+        unstructured data - Blob - PDFs DOcs , JSON file, image etc
+
+Azure SQL Storage
+        You can migrate your existing SQL Server databases with minimal downtime using the 
+        Azure Database Migration Service. The service uses the Microsoft Data Migration Assistant to
+        generate assessment reports that provide recommendations to help guide you through required 
+        changes prior to performing a migration.
+
+Azure Cosmos DB - NoSQL DB
+Azure BLOB storage - Azure Blob storage lets you stream large video or audio files directly to the user's browser from anywhere in the world. Blob storage is also used to store data for backup, disaster recovery, and archiving.
+                    It has the ability to store up to 8 TB of data for virtual machines.
+Azure Data Lake Storage
+    The Data Lake feature allows you to perform analytics on your data usage and prepare reports. Data Lake is a large repository that stores both structured and unstructured data.
+    Azure Data Lake Storage combines the scalability and cost benefits of object storage with the reliability and performance of the Big Data file system capabilities.
+
+Azure Files
+    Azure Files offers fully managed file shares in the cloud that are accessible via the industry standard Server Message Block (SMB) protocol. 
+
+Azure Queue Storage
+    Azure Queue Storage can be used to help build flexible applications and separate functions for better durability
+    across large workloads. When application components are decoupled, they can scale independently. 
+    Queue storage provides asynchronous message queueing for communication between application components, 
+    whether they are running in the cloud, on the desktop, on-premises, or on mobile devices.
+
+    You can use queue storage to:
+        Create a backlog of work and to pass messages between different Azure web servers.
+        Distribute load among different web servers/infrastructure and to manage bursts of traffic.
+        Build resilience against component failure when multiple users access your data at the same time.
+
+Azure Disk Storage 
+    Disk storage provides disks for virtual machines, applications, and other services to access and use as they need, similar to how they would in on-premises scenarios.
+    Disk storage allows data to be persistently stored and accessed from an attached virtual hard disk.
+    When working with VMs, you can use standard SSD and HDD disks for less critical workloads,
+    and premium SSD disks for mission-critical production applications. 
+
+Storage Tiers 
+    Azure offers three storage tiers for blob object storage:
+        Hot storage tier: optimized for storing data that is accessed frequently.
+        Cool storage tier: optimized for data that are infrequently accessed and stored for at least 30 days.
+        Archive storage tier: for data that are rarely accessed and stored for at least 180 days with flexible latency requirements.
+
+Ecryption and Replication of Storage
+
+Encryption for storage services
+        The following encryption types are available for your resources:
+
+        - Azure Storage Service Encryption (SSE) for data at rest helps you secure your data to meet the organization's security and regulatory compliance. It encrypts the data before storing it and decrypts the data before retrieving it.
+            The encryption and decryption are transparent to the user.
+        - Client-side encryption is where the data is already encrypted by the client libraries. Azure stores the data in the encrypted state at rest, which is then decrypted during retrieval.
+
+Replication for storage availability
+    A replication type is set up when you create a storage account.
+     The replication feature ensures that your data is durable and always available.
